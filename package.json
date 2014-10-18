@@ -1,0 +1,12 @@
+{
+  "name": "browserify-test",
+  "description": "Run browser tests with browserify",
+  "repository": "git://github.com/alekseykulikov/browserify-test.git",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "1.x"
+  }
+}
