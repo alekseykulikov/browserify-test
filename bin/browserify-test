@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var pkg = require('../package.json');
+var run = require('../lib');
+
+program
+  .version(pkg.version)
+  .usage('[options] [test.js ...]')
+  .option('-w, --watch', 'run watch server on http://localhost:7357')
+  .parse(process.argv);
+
+if (!program.args.length) program.args.push('test/*.js');
+
+run({
+  watch: program.watch || false,
+  files: program.args,
+});

@@ -5,8 +5,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "lib/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^2.4.0"
+  },
   "devDependencies": {
     "mocha": "1.x"
+  },
+  "bin": {
+    "browserify-test": "./bin/browserify-test"
   }
 }
