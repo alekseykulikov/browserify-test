@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 
 var program = require('commander');
+var glob = require('glob');
 var pkg = require('../package.json');
 var run = require('../lib');
 
 program
   .version(pkg.version)
-  .usage('[options] [test.js ...]')
+  .usage('[options] [./test.js ...]')
   .option('-w, --watch', 'run watch server on http://localhost:7357')
   .parse(process.argv);
 
-if (!program.args.length) program.args.push('test/*.js');
+if (!program.args.length) program.args.push('./test/*.js');
+var files = [];
+program.args.forEach(function(p) { files.push.apply(files, glob.sync(p)) });
 
 run({
   watch: program.watch || false,
-  files: program.args,
+  files: files,
 });
