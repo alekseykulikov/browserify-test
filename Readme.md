@@ -11,11 +11,11 @@
   * Builds on top of [testem](https://github.com/airportyh/testem) for solid integration with different browsers and platforms
   * Uses [watchify](https://github.com/substack/watchify) for fast development rebuilds.
 
-![](http://postimg.org/image/wdgo5ge01/)
+![](https://dl.dropboxusercontent.com/u/1682963/browserify-test.gif)
 
 ## Usage
 
-  Install with npm and make sure that phantomjs is installed (`phantomjs -v`):
+  Install with npm and make sure phantomjs is installed (`phantomjs -v`):
 
 ```bash
 npm install -g browserify-test
@@ -53,8 +53,6 @@ npm install --save-dev browserify-test
   }
 }
 ```
-
-  No need for qulp/grunt configuration for so straightforward task.
 
   **npm hint:** you don't need to type `./node_modules/.bin/browserify-test` to refer on local copy of `browserify-test`,
   npm does it [automatically](https://www.npmjs.org/doc/files/npm-folders.html#executables).
