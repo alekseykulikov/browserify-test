@@ -9,7 +9,7 @@ var run = require('../lib');
 
 program
   .version(pkg.version)
-  .usage('[options] [./test.js ...]')
+  .usage('[options] [./test/*.js ...]')
   .option('-w, --watch', 'run watch server on http://localhost:7357')
   .parse(process.argv);
 

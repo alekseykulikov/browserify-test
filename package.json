@@ -1,6 +1,6 @@
 {
   "name": "browserify-test",
-  "description": "Run browser tests with browserify",
+  "description": "An easy way to test front-end libraries using browserify and mocha",
   "repository": "git://github.com/alekseykulikov/browserify-test.git",
   "version": "1.0.0",
   "license": "MIT",
