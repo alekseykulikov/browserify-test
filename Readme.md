@@ -2,14 +2,14 @@
 # browserify-test [![Build Status](https://travis-ci.org/alekseykulikov/browserify-test.png?branch=master)](https://travis-ci.org/alekseykulikov/browserify-test)
 
   An easy way to test front-end libraries using [browserify](http://browserify.org) and [mocha](https://github.com/mochajs/mocha).
-  Run your tests in terminal with phantomjs or start watch server to test in any browser.
+  Run your tests in terminal with phantomjs or start watch server to test and debug in actual browser.
 
   Main features:
 
   * No need for test.html page
-  * Minimum configuration, just run your tests whenever you want
-  * Builds on top of [testem](https://github.com/airportyh/testem) for solid integration with different browsers and platforms
+  * No config files, just run your tests whenever you want
   * Uses [watchify](https://github.com/substack/watchify) for fast development rebuilds.
+  * Builds on top of [testem](https://github.com/airportyh/testem) for solid integration with different browsers and platforms
 
 ![](https://dl.dropboxusercontent.com/u/1682963/browserify-test.gif)
 
