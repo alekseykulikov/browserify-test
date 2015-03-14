@@ -1,4 +1,3 @@
-
 # browserify-test [![Build Status](https://travis-ci.org/alekseykulikov/browserify-test.png?branch=master)](https://travis-ci.org/alekseykulikov/browserify-test)
 
   An easy way to test front-end libraries using [browserify](http://browserify.org) and [mocha](https://github.com/mochajs/mocha).
@@ -72,7 +71,3 @@ run({
 
   * watch - Boolean - enable watch server
   * files - Array - a list of files for browserify
-
-## License
-
-  Aleksey Kulikov, [MIT](http://alekseykulikov.mit-license.org/).
