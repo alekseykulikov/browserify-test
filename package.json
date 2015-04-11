@@ -9,16 +9,16 @@
     "test": "mocha --reporter spec --timeout 10000"
   },
   "dependencies": {
-    "browserify": "^9.0.3",
+    "browserify": "^9.0.8",
     "commander": "^2.7.1",
-    "glob": "^5.0.3",
-    "testem": "^0.7.5",
-    "watchify": "^2.4.0"
+    "glob": "^5.0.5",
+    "testem": "^0.8.0-0",
+    "watchify": "^3.1.0"
   },
   "devDependencies": {
-    "chai": "^2.1.1",
-    "lodash": "^3.5.0",
-    "mocha": "^2.2.1"
+    "chai": "^2.2.0",
+    "lodash": "^3.6.0",
+    "mocha": "^2.2.4"
   },
   "bin": {
     "browserify-test": "./bin/browserify-test"
