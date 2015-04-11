@@ -2,7 +2,7 @@
   "name": "browserify-test",
   "description": "An easy way to test front-end libraries using browserify and mocha",
   "repository": "git://github.com/alekseykulikov/browserify-test.git",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {

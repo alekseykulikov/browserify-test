@@ -1,3 +1,10 @@
+## 1.1.1 / 2015-04-11
+
+  * Deps: browserify@9.0.8
+  * Deps: glob@5.0.5
+  * Deps: testem@0.8.0-0
+  * Deps: watchify@3.1.0
+
 ## 1.1.0 / 2015-03-14
 
   * Update deps
