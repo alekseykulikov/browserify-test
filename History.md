@@ -1,3 +1,10 @@
+## 1.2.0 / 2015-04-30
+
+  * support `--transform` option
+  * Deps: testem@0.8.3
+  * Deps: commander@2.8.1
+  * Deps: watchify@3.2.0
+
 ## 1.1.1 / 2015-04-11
 
   * Deps: browserify@9.0.8
