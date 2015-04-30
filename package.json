@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "browserify": "^9.0.8",
-    "commander": "^2.7.1",
+    "commander": "^2.8.1",
     "glob": "^5.0.5",
-    "testem": "^0.8.0-0",
-    "watchify": "^3.1.0"
+    "testem": "^0.8.3",
+    "watchify": "^3.2.0"
   },
   "devDependencies": {
-    "chai": "^2.2.0",
-    "lodash": "^3.6.0",
+    "chai": "^2.3.0",
+    "lodash": "^3.7.0",
     "mocha": "^2.2.4"
   },
   "bin": {
