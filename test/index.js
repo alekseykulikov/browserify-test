@@ -57,4 +57,14 @@ describe('browserify-test', function() {
       done();
     });
   });
+
+  it('supports --transform', function(done) {
+    exec('./bin/browserify-test ./test/app/test2/*.js -t babelify', function(err, stdout) {
+      if (err) return done(err);
+      expect(stdout).contain('test2-sum calculates the sum');
+      expect(stdout).contain('1..1');
+      expect(stdout).contain('# ok');
+      done();
+    });
+  });
 });

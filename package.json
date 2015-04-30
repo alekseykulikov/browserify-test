@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 10000"
+    "test": "mocha"
   },
   "dependencies": {
     "browserify": "^9.0.8",
@@ -16,6 +16,7 @@
     "watchify": "^3.2.0"
   },
   "devDependencies": {
+    "babelify": "^6.0.2",
     "chai": "^2.3.0",
     "lodash": "^3.7.0",
     "mocha": "^2.2.4"

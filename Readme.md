@@ -9,6 +9,7 @@
   * No config files, just run your tests whenever you want
   * Uses [watchify](https://github.com/substack/watchify) for fast development rebuilds.
   * Builds on top of [testem](https://github.com/airportyh/testem) for solid integration with different browsers and platforms
+  * Support browserify transforms
 
 ![](https://dl.dropboxusercontent.com/u/1682963/browserify-test.gif)
 
@@ -27,6 +28,7 @@ browserify-test # run tests for ./test/*.js
 browserify-test --watch # start watch server on localhost:7537
 browserify-test ./path/to/test.js ./path/to/another-test.js # pass test files as arguments
 browserify-test ./lib/**/test.js # use globs
+browserify-test --tranform babelify ./path/to/es6-test.js # use transforms
 ```
 
 ## Integration with npm
@@ -48,7 +50,7 @@ npm install --save-dev browserify-test
     "start": "browserify-test --watch ./test/index.js"
   },
   "devDependencies": {
-    "browserify-test": "^1.0.0"
+    "browserify-test": "^1.2.0"
   }
 }
 ```
@@ -63,6 +65,7 @@ var run = require('browserify-test');
 
 run({
   watch: false,
+  transform: ['babelify'],
   files: ['./test/file1.js', './test/file2.js']
 });
 ```
@@ -70,4 +73,5 @@ run({
   Options:
 
   * watch - Boolean - enable watch server
+  * transform - Array - a list of browserify transform modules
   * files - Array - a list of files for browserify
