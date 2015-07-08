@@ -1,3 +1,11 @@
+## 1.3.0 / 2015-07-08
+
+  * support `--host` option
+  * Deps: browserify@10.2.4
+  * Deps: glob@5.0.13
+  * Deps: testem@0.9.0-1
+  * Deps: watchify@3.2.3
+
 ## 1.2.0 / 2015-04-30
 
   * support `--transform` option
