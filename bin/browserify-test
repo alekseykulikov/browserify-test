@@ -12,6 +12,7 @@ program
   .usage('[options] [./test/*.js ...]')
   .option('-w, --watch', 'run watch server on http://localhost:7357')
   .option('-t, --transform <t1,t2,..>', 'add browserify transforms')
+  .option('--host <host>', 'specify /bundle.js host (for remote run)')
   .parse(process.argv);
 
 // prepare files
@@ -24,6 +25,7 @@ program.args.forEach(function(p) { files.push.apply(files, glob.sync(p)) });
 
 run({
   watch: program.watch || false,
+  host: program.host,
   transform: program.transform ? program.transform.split(',') : [],
   files: files,
 });

@@ -75,3 +75,4 @@ run({
   * watch - Boolean - enable watch server
   * transform - Array - a list of browserify transform modules
   * files - Array - a list of files for browserify
+  * host - String specify host for /bundle.js, when you run by IP address for example
