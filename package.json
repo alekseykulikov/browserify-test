@@ -1,9 +1,18 @@
 {
   "name": "browserify-test",
-  "description": "An easy way to test front-end libraries using browserify and mocha",
+  "description": "Test front-end libraries using browserify and mocha with ease",
   "repository": "git://github.com/alekseykulikov/browserify-test.git",
   "version": "1.3.0",
   "license": "MIT",
+  "keywords": [
+    "browserify",
+    "watchify",
+    "testem",
+    "mocha",
+    "test",
+    "front-end",
+    "development"
+  ],
   "files": [
     "src"
   ],
@@ -16,6 +25,9 @@
   "dependencies": {
     "browserify": "^11.1.0",
     "commander": "^2.8.1",
+    "concat-stream": "^1.5.0",
+    "debug": "^2.2.0",
+    "errorify": "^0.3.1",
     "glob": "^5.0.14",
     "testem": "^0.9.4",
     "watchify": "^3.4.0"

@@ -1,27 +1,29 @@
-# browserify-test [![Build Status](https://travis-ci.org/alekseykulikov/browserify-test.png?branch=master)](https://travis-ci.org/alekseykulikov/browserify-test)
+# browserify-test
 
-  An easy way to test front-end libraries using [browserify](http://browserify.org) and [mocha](https://github.com/mochajs/mocha).
-  Run your tests in terminal with phantomjs or start watch server to test and debug in actual browser.
+[![Build Status](https://travis-ci.org/alekseykulikov/browserify-test.png?branch=master)](https://travis-ci.org/alekseykulikov/browserify-test)
+[![](https://img.shields.io/npm/v/browserify-test.svg)](https://npmjs.org/package/browserify-test)
 
-  Main features:
+> Test front-end libraries using [browserify](http://browserify.org)
+and [mocha](https://github.com/mochajs/mocha) with ease.
 
-  * No need for test.html page
-  * No config files, just run your tests whenever you want
-  * Uses [watchify](https://github.com/substack/watchify) for fast development rebuilds.
-  * Builds on top of [testem](https://github.com/airportyh/testem) for solid integration with different browsers and platforms
-  * Support browserify transforms
+Main features:
+
+* No config files, just run your tests in terminal with phantomjs or start watch server to test and debug in actual browser.
+* Builds on top of [testem](https://github.com/airportyh/testem) for solid integration with different browsers and platforms
+* Uses [watchify](https://github.com/substack/watchify) for fast development rebuilds.
+* Supports browserify transforms
 
 ![](https://dl.dropboxusercontent.com/u/1682963/browserify-test.gif)
 
 ## Usage
 
-  Install with npm and make sure phantomjs is installed (`phantomjs -v`):
+Install with npm and make sure phantomjs is installed (`phantomjs -v`):
 
 ```bash
-npm install -g browserify-test
+npm install --global browserify-test
 ```
 
-  Pass test files to `browserify-test` and enjoy browserified mocha tests:
+Pass test files to `browserify-test` and enjoy browserified mocha tests:
 
 ```bash
 browserify-test # run tests for ./test/*.js
@@ -39,8 +41,8 @@ browserify-test --tranform babelify ./path/to/es6-test.js # use transforms
 npm install --save-dev browserify-test
 ```
 
-  And use [npm scripts](https://www.npmjs.org/doc/misc/npm-scripts.html)
-  to run your tests in terminal with `npm test` or start development watch server with `npm start`.
+And use [npm scripts](https://www.npmjs.org/doc/misc/npm-scripts.html)
+to run your tests in terminal with `npm test` or start development watch server with `npm start`.
 
 
 ```json
@@ -55,24 +57,24 @@ npm install --save-dev browserify-test
 }
 ```
 
-  **npm hint:** you don't need to type `./node_modules/.bin/browserify-test` to refer on local copy of `browserify-test`,
-  npm does it [automatically](https://www.npmjs.org/doc/files/npm-folders.html#executables).
+**npm hint:** you don't need to type `./node_modules/.bin/browserify-test` to refer on local copy of `browserify-test`,
+npm does it [automatically](https://www.npmjs.org/doc/files/npm-folders.html#executables).
+
 
 ## Node.js
 
 ```js
-var run = require('browserify-test');
+var run = require('browserify-test')
 
 run({
   watch: false,
   transform: ['babelify'],
   files: ['./test/file1.js', './test/file2.js']
-});
+})
 ```
 
-  Options:
+Options:
 
-  * watch - Boolean - enable watch server
-  * transform - Array - a list of browserify transform modules
-  * files - Array - a list of files for browserify
-  * host - String specify host for /bundle.js, when you run by IP address for example
+* watch - Boolean - enable watch server
+* transform - Array - a list of browserify transform modules
+* files - Array - a list of files for browserify
