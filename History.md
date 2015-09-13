@@ -1,3 +1,11 @@
+## 2.0.0 / 2015-09-13
+
+* remove `--host` and inject scripts to `/` index.html
+* handle compilation errors with [errorify](https://github.com/zertosh/errorify)
+* rewrite project with ES6 and compile with babel to `./src` folder
+* lint code with jshint & jscs
+* deps: browserify@11.1.0, commander@2.8.1, glob@5.0.14, testem@0.9.4, watchify@3.4.0
+
 ## 1.3.0 / 2015-07-08
 
 * support `--host` option
