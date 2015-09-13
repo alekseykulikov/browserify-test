@@ -1,0 +1,15 @@
+{
+  // validate code
+  "freeze": true, // prohibits overwriting prototypes
+  "unused": true,
+  "undef": true,
+  "asi": true, // no semicolons
+  "module": true,
+  // relaxing options
+  "expr": true, // suppresses warnings about expressive expressions, like ?
+  "laxbreak": true, // allow line breaking
+  // environments
+  "node": true,
+  "esnext": true,
+  "mocha": true
+}

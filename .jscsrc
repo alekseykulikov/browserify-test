@@ -1,0 +1,18 @@
+{
+	"preset": "node-style-guide",
+	"requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+	"requireCapitalizedComments": null,
+	"requireCurlyBraces": null,
+	"requireTrailingComma": null,
+	"disallowQuotedKeysInObjects": null,
+	"maximumLineLength": null,
+	"requireSpacesInConditionalExpression": true,
+	"requireSpacesInsideObjectBrackets": "all",
+	"esnext": true,
+	"disallowSemicolons": true,
+	"disallowKeywords": ["var"],
+	"disallowIdentifierNames": ["arguments"],
+	"requireParenthesesAroundArrowParam": true,
+	"requireSpread": true,
+	"requireSpaceBetweenArguments": true
+}

@@ -22,5 +22,7 @@
   },
   "bin": {
     "browserify-test": "./bin/browserify-test"
+    "jscs": "^2.1.1",
+    "jshint": "^2.8.0",
   }
 }
