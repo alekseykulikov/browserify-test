@@ -1,9 +1,9 @@
-var expect = require('chai').expect;
-var odd = require('../').odd;
+import { expect } from 'chai'
+import { odd } from '../'
 
-describe('test-odd', function() {
-  it('calculates the odd', function() {
-    expect(odd(10, 20)).equal(-10);
-    expect(odd(10, -20)).equal(30);
-  });
-});
+describe('test-odd', () => {
+  it('calculates the odd', () => {
+    expect(odd(10, 20)).equal(-10)
+    expect(odd(10, -20)).equal(30)
+  })
+})

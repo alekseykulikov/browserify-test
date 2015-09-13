@@ -1,9 +1,9 @@
-var expect = require('chai').expect;
-var sum = require('../').sum;
+import { expect } from 'chai'
+import { sum } from '../'
 
-describe('test-sum', function() {
-  it('calculates the sum', function() {
-    expect(sum(10, 20)).equal(30);
-    expect(sum(10, -20)).equal(-10);
-  });
-});
+describe('test-sum', () => {
+  it('calculates the sum', () => {
+    expect(sum(10, 20)).equal(30)
+    expect(sum(10, -20)).equal(-10)
+  })
+})

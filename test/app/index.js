@@ -1,13 +1,11 @@
-var _ = require('lodash');
+export function sum(...args) {
+  return args.reduce((memo, val) => memo += val)
+}
 
-exports.sum = function sum() {
-  return _.reduce(arguments, function(memo, val) { return memo += val });
-};
+export function odd(...args) {
+  return args.reduce((memo, val) => memo -= val)
+}
 
-exports.odd = function odd() {
-  return _.reduce(arguments, function(memo, val) { return memo -= val });
-};
-
-exports.mul = function mul() {
-  return _.reduce(arguments, function(memo, val) { return memo *= val });
-};
+export function mul(...args) {
+  return args.reduce((memo, val) => memo *= val)
+}
