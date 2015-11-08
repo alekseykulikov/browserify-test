@@ -1,3 +1,7 @@
+## 2.1.1 / 2015-11-09
+
+* fix support for default files
+
 ## 2.1.0 / 2015-11-09
 
 * support subargs syntax for `--transform`
