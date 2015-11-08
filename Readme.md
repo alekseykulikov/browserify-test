@@ -41,7 +41,7 @@ browserify-test # run tests for ./test/*.js
 browserify-test --watch # start watch server on localhost:7537
 browserify-test ./path/to/test.js ./path/to/another-test.js # pass test files as arguments
 browserify-test ./lib/**/test.js # use globs
-browserify-test --tranform babelify ./path/to/es6-test.js # use transforms
+browserify-test --tranform [ babelify --presets es2015 ] ./path/to/es6-test.js # use transforms
 ```
 
 ## Integration with npm
@@ -63,12 +63,12 @@ to run your tests in terminal with `npm test` or start development watch server 
     "start": "browserify-test --watch ./test/index.js"
   },
   "devDependencies": {
-    "browserify-test": "^1.2.0"
+    "browserify-test": "^2.1.0"
   }
 }
 ```
 
-**Npm hint:** you don't need to type `./node_modules/.bin/browserify-test` to refer on local copy of `browserify-test`,
+**npm hint:** you don't need to type `./node_modules/.bin/browserify-test` to refer on local copy of `browserify-test`,
 npm does it [automatically](https://www.npmjs.org/doc/files/npm-folders.html#executables).
 
 
@@ -79,7 +79,7 @@ import run from 'browserify-test'
 
 run({
   watch: false,
-  transform: ['babelify'],
+  transform: ['brsf', ['babelify', { presets: 'es2015' }]],
   files: ['./test/file1.js', './test/file2.js'],
 })
 ```
