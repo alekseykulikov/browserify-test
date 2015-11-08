@@ -1,3 +1,10 @@
+## 2.1.0 / 2015-11-09
+
+* support subargs syntax for `--transform`
+* support multiple transforms by repeating `--transform` option
+* use eslint instead of jshint+jscs
+* deps: browserify@12.0.1, commander@2.9.0, glob@5.0.15, testem@0.9.9, watchify@3.6.0
+
 ## 2.0.0 / 2015-09-13
 
 * remove `--host` and inject scripts to `/` index.html
