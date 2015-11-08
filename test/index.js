@@ -35,6 +35,16 @@ describe('browserify-test', () => {
     })
   })
 
+  it('supports multiple transforms', (done) => {
+    exec('./lib/cli.js -t browserify-handlebars -t [ babelify --presets es2015 ] ./test/app/test2/read-html.js', (err, stdout) => {
+      if (err) return done(err)
+      expect(stdout).contain('test-read-file reads index.html')
+      expect(stdout).contain('1..1')
+      expect(stdout).contain('# ok')
+      done()
+    })
+  })
+
   it('supports --watch', (done) => {
     const child = spawn('./src/cli.js', ['-t', 'babelify', '-w', './test/app/test/mul.js'])
     const timer = setTimeout(child.kill.bind(child), 16000)
