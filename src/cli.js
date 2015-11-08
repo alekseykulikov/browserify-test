@@ -22,9 +22,8 @@ const argv = subarg(process.argv.slice(2), {
   boolean: ['watch'],
 })
 const files = []
-void (argv._ || ['./test/*.js']).forEach((p) => {
-  files.push(...glob.sync(p))
-})
+if (!argv._.length) argv._ = ['./test/*.js']
+argv._.forEach((p) => files.push(...glob.sync(p)))
 
 // parse transforms
 
