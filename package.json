@@ -19,7 +19,7 @@
     "development"
   ],
   "scripts": {
-    "test": "npm run prepublish && jshint lib/ test/ && jscs lib/ test/ && mocha",
+    "test": "npm run prepublish && eslint src/ test/index.js && mocha",
     "prepublish": "babel src --out-dir lib --presets es2015 && chmod 755 lib/cli.js"
   },
   "dependencies": {
@@ -35,11 +35,12 @@
   "devDependencies": {
     "babel": "^6.0.15",
     "babel-cli": "^6.1.2",
+    "babel-eslint": "^4.1.4",
     "babel-preset-es2015": "^6.1.2",
     "babelify": "^7.2.0",
     "chai": "^3.4.1",
-    "jscs": "^2.1.1",
-    "jshint": "^2.8.0",
+    "eslint": "^1.9.0",
+    "eslint-config-airbnb": "^1.0.0",
     "mocha": "^2.3.3"
   }
 }
