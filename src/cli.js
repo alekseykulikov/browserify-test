@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import program from 'commander'
 import glob from 'glob'
+import subarg from 'subarg'
+import omit from 'lodash.omit'
 import pkg from '../package.json'
 import run from './'
 
@@ -15,14 +17,34 @@ program
 
 // prepare files
 
-if (!program.args.length) program.args.push('./test/*.js')
+const argv = subarg(process.argv.slice(2), {
+  alias: { t: 'transform', w: 'watch' },
+  boolean: ['watch'],
+})
 const files = []
-program.args.forEach((p) => files.push(...glob.sync(p)))
+void (argv._ || ['./test/*.js']).forEach((p) => {
+  files.push(...glob.sync(p))
+})
+
+// parse transforms
+
+const transform = []
+if (argv.transform) {
+  if (!Array.isArray(argv.transform)) argv.transform = [argv.transform]
+  argv.transform.forEach((tr) => {
+    if (typeof tr === 'string') {
+      transform.push(tr)
+    } else if (Array.isArray(tr._)) {
+      transform.push([tr._[0], omit(tr, '_')])
+    } else {
+      throw new Error(`invalid --transform value: ${JSON.stringify(tr)}`)
+    }
+  })
+}
 
 // run testem
 
 run({
-  watch: Boolean(program.watch) || false,
-  transform: program.transform ? program.transform.split(',') : [],
-  files: files,
+  transform, files,
+  watch: program.watch || false,
 })

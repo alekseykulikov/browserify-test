@@ -1,5 +1,3 @@
-const debug = Debug('browserify-test')
-import Debug from 'debug'
 import browserify from 'browserify'
 import watchify from 'watchify'
 import errorify from 'errorify'
@@ -13,10 +11,8 @@ import Server from 'testem/lib/server'
  * @param {Object} opts
  */
 
-export default function run({ files, transform, watch } = {}) {
+export default function run({ files, transform, watch }) {
   if (!files || !files.length) throw new Error('specify files')
-  if (!transform) transform = []
-  debug('opts = %o', { files, transform, watch })
 
   // setup testem & browserify
 
@@ -38,12 +34,19 @@ export default function run({ files, transform, watch } = {}) {
   }
 
   b.plugin(errorify)
-  transform.forEach(b.transform, b)
+  if (transform) {
+    transform.forEach((tr) => {
+      if (typeof tr === 'string') {
+        b.transform(tr)
+      } else {
+        b.transform(tr[0], tr[1])
+      }
+    })
+  }
 
   // monkey-patch testem to inject compiled bundle to root url
 
   Server.prototype.serveHomePage = (req, res) => {
-    debug('serve /')
     b.bundle()
     .on('error', (err) => {
       res.status(500).send(err.stack)

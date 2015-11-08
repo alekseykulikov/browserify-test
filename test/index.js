@@ -4,7 +4,7 @@ import { spawn } from 'child_process'
 
 describe('browserify-test', () => {
   it('runs one file', (done) => {
-    exec('./src/cli.js -t babelify ./test/app/test/sum.js', (err, stdout) => {
+    exec('./lib/cli.js -t [ babelify --presets es2015 ] ./test/app/test/sum.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('test-sum calculates the sum')
       expect(stdout).contain('1..1')
@@ -13,8 +13,8 @@ describe('browserify-test', () => {
     })
   })
 
-  it('runs many files', (done) => {
-    exec('./src/cli.js -t babelify ./test/app/test/sum.js ./test/app/test/odd.js', (err, stdout) => {
+  it('runs multiple files', (done) => {
+    exec('./lib/cli.js --transform [ babelify --presets es2015 ] ./test/app/test/sum.js ./test/app/test/odd.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('1..2')
       expect(stdout).contain('# ok')
@@ -23,7 +23,7 @@ describe('browserify-test', () => {
   })
 
   it('supports globs', (done) => {
-    exec('./src/cli.js -t babelify ./test/app/test/*.js', (err, stdout) => {
+    exec('./lib/cli.js -t [ babelify --presets es2015 ] ./test/app/test/*.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('test-mul calculates the mul')
       expect(stdout).contain('test-mul supports many arguments')
@@ -46,12 +46,12 @@ describe('browserify-test', () => {
   })
 
   it('supports --watch', (done) => {
-    const child = spawn('./src/cli.js', ['-t', 'babelify', '-w', './test/app/test/mul.js'])
+    const child = spawn('./lib/cli.js', ['--transform', '[', 'babelify', '--presets', 'es2015', ']', '-w', './test/app/test/mul.js'])
     const timer = setTimeout(child.kill.bind(child), 16000)
     let counter = 0
 
     child.stdout.on('data', (data) => {
-      if (data.toString().trim() != '2/2 ✔') return
+      if (data.toString().trim() !== '2/2 ✔') return
       if (counter === 0) {
         counter = 1
         exec('touch ./test/app/index.js')
