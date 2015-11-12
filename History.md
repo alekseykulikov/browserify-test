@@ -1,3 +1,7 @@
+## 2.1.2 / 2015-11-12
+
+* deps: glob@6.0.1, testem@0.9.11
+
 ## 2.1.1 / 2015-11-09
 
 * fix support for default files
