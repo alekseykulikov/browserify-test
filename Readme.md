@@ -1,10 +1,10 @@
 # browserify-test
 
-[![Build Status](https://travis-ci.org/alekseykulikov/browserify-test.png?branch=master)](https://travis-ci.org/alekseykulikov/browserify-test)
+[![](https://travis-ci.org/alekseykulikov/browserify-test.png)](https://travis-ci.org/alekseykulikov/browserify-test)
 [![](https://img.shields.io/npm/v/browserify-test.svg)](https://npmjs.org/package/browserify-test)
 
-> Test front-end libraries using [browserify](http://browserify.org)
-and [mocha](https://github.com/mochajs/mocha) with ease
+> Simplify testing of front-end libraries using [browserify](http://browserify.org)
+and [mocha](https://github.com/mochajs/mocha)
 
 Features:
 
@@ -63,7 +63,7 @@ to run your tests in terminal with `npm test` or start development watch server 
     "start": "browserify-test --watch ./test/index.js"
   },
   "devDependencies": {
-    "browserify-test": "^2.1.0"
+    "browserify-test": "^2.1.2"
   }
 }
 ```
