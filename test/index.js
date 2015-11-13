@@ -47,7 +47,6 @@ describe('browserify-test', () => {
 
   it('supports --watch', (done) => {
     const child = spawn('./lib/cli.js', ['--transform', '[', 'babelify', '--presets', 'es2015', ']', '-w', './test/app/test/mul.js'])
-    const timer = setTimeout(child.kill.bind(child), 16000)
     let counter = 0
 
     child.stdout.on('data', (data) => {
@@ -58,13 +57,8 @@ describe('browserify-test', () => {
       } else if (counter === 1) {
         counter = 2
         child.stdin.write('q') // close testem
+        done()
       }
-    })
-
-    child.on('close', () => {
-      clearTimeout(timer)
-      expect(counter).equal(2)
-      done()
     })
   })
 })
