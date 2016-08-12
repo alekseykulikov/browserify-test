@@ -43,8 +43,8 @@
     "browserify-handlebars": "^1.0.0",
     "chai": "^3.5.0",
     "eslint": "^2.13.1",
+    "eslint-config-standard": "^5.3.5",
     "handlebars": "^4.0.5",
-    "mocha": "^3.0.2",
-    "standard": "^7.1.2"
+    "mocha": "^3.0.2"
   }
 }
