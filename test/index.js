@@ -3,6 +3,15 @@ import { expect } from 'chai'
 import { exec, spawn } from 'child_process'
 
 describe('browserify-test', () => {
+  // clean child process in the case of error
+  let child
+  afterEach(() => {
+    if (child) {
+      child.kill('SIGINT')
+      child = null
+    }
+  })
+
   it('runs one file', (done) => {
     exec('./lib/cli.js -t [ babelify --presets es2015 ] ./test/app/test/sum.js', (err, stdout) => {
       if (err) return done(err)
@@ -46,7 +55,7 @@ describe('browserify-test', () => {
   })
 
   it('supports --watch', (done) => {
-    const child = spawn('./lib/cli.js', ['--transform', '[', 'babelify', '--presets', 'es2015', ']', '-w', './test/app/test/mul.js'])
+    child = spawn('./lib/cli.js', ['--transform', '[', 'babelify', '--presets', 'es2015', ']', '-w', './test/app/test/mul.js'])
     let counter = 0
 
     child.stdout.on('data', (data) => {
