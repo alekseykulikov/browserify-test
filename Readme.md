@@ -2,6 +2,7 @@
 
 [![](https://travis-ci.org/alekseykulikov/browserify-test.png)](https://travis-ci.org/alekseykulikov/browserify-test)
 [![](https://img.shields.io/npm/v/browserify-test.svg)](https://npmjs.org/package/browserify-test)
+[![](http://img.shields.io/npm/dm/idb-schema.svg)](https://npmjs.org/package/browserify-test)
 
 > Simplify testing of front-end libraries using [browserify](http://browserify.org)
 and [mocha](https://github.com/mochajs/mocha)
@@ -11,7 +12,6 @@ Features:
 * No config files, just run your tests in terminal with phantomjs or start watch server to test and debug in actual browser;
 * It builds on top of [testem](https://github.com/airportyh/testem) for solid integration with different browsers and platforms;
 * It uses [watchify](https://github.com/substack/watchify) and [errorify](https://github.com/zertosh/errorify) for better development experience;
-* Clean ES6 [source code](./lib/index.js).
 
 ![](https://dl.dropboxusercontent.com/u/1682963/browserify-test.gif)
 

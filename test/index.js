@@ -59,7 +59,7 @@ describe('browserify-test', () => {
     let counter = 0
 
     child.stdout.on('data', (data) => {
-      if (data.toString().trim() !== '2/2 ✔') return
+      if (data.toString().indexOf('2/2') === -1) return
       if (counter === 0) {
         counter = 1
         exec('touch ./test/app/index.js')

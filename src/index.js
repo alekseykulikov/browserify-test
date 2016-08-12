@@ -11,7 +11,7 @@ import Server from 'testem/lib/server'
  * @param {Object} opts
  */
 
-export default function run ({ files, transform, watch }) {
+export default function ({ files, transform, watch }) {
   if (!files || !files.length) throw new Error('specify files')
 
   // setup testem & browserify
@@ -52,34 +52,23 @@ export default function run ({ files, transform, watch }) {
       res.status(500).send(err.stack)
     })
     .pipe(concatStream((buf) => {
-      res.status(200).send(template(buf))
+      res.status(200).send(`
+        <!doctype html>
+        <html>
+        <head>
+          <title>Tests</title>
+          <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.css">
+          <script src="//cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.js"></script>
+          <script src="/testem.js"></script>
+          <script>mocha.setup('bdd')</script>
+        </head>
+        <body>
+          <div id="mocha"></div>
+          <script>${buf.toString()}</script>
+          <script>mocha.run()</script>
+        </body>
+        </html>
+      `)
     }))
   }
-}
-
-/**
- * Render default index.html with `buf` as a <script> content.
- *
- * @param {Buffer} buf
- * @return {String}
- */
-
-function template (buf) {
-  return `
-    <!doctype html>
-    <html>
-    <head>
-      <title>Tests</title>
-      <link rel="stylesheet" href="/testem/mocha.css">
-      <script src="/testem/mocha.js"></script>
-      <script src="/testem.js"></script>
-      <script>mocha.setup('bdd')</script>
-    </head>
-    <body>
-      <div id="mocha"></div>
-      <script>${buf.toString()}</script>
-      <script>mocha.run()</script>
-    </body>
-    </html>
-  `
 }
