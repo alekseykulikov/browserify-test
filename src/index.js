@@ -11,7 +11,7 @@ import Server from 'testem/lib/server'
  * @param {Object} opts
  */
 
-export default function run({ files, transform, watch }) {
+export default function run ({ files, transform, watch }) {
   if (!files || !files.length) throw new Error('specify files')
 
   // setup testem & browserify
@@ -20,7 +20,7 @@ export default function run({ files, transform, watch }) {
   const config = {
     framework: 'mocha',
     launch_in_ci: ['phantomjs'],
-    launch_in_dev: ['phantomjs'],
+    launch_in_dev: ['phantomjs']
   }
 
   let b
@@ -64,7 +64,7 @@ export default function run({ files, transform, watch }) {
  * @return {String}
  */
 
-function template(buf) {
+function template (buf) {
   return `
     <!doctype html>
     <html>

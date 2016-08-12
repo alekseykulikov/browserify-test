@@ -1,6 +1,6 @@
+/* eslint-env mocha */
 import { expect } from 'chai'
-import { exec } from 'child_process'
-import { spawn } from 'child_process'
+import { exec, spawn } from 'child_process'
 
 describe('browserify-test', () => {
   it('runs one file', (done) => {

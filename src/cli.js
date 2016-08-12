@@ -19,7 +19,7 @@ program
 
 const argv = subarg(process.argv.slice(2), {
   alias: { t: 'transform', w: 'watch' },
-  boolean: ['watch'],
+  boolean: ['watch']
 })
 const files = []
 if (!argv._.length) argv._ = ['./test/*.js']
@@ -45,5 +45,5 @@ if (argv.transform) {
 
 run({
   transform, files,
-  watch: program.watch || false,
+  watch: program.watch || false
 })
