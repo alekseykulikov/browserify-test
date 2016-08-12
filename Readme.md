@@ -3,6 +3,7 @@
 [![](https://travis-ci.org/alekseykulikov/browserify-test.png)](https://travis-ci.org/alekseykulikov/browserify-test)
 [![](https://img.shields.io/npm/v/browserify-test.svg)](https://npmjs.org/package/browserify-test)
 [![](http://img.shields.io/npm/dm/idb-schema.svg)](https://npmjs.org/package/browserify-test)
+[![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 > Simplify testing of front-end libraries using [browserify](http://browserify.org)
 and [mocha](https://github.com/mochajs/mocha)

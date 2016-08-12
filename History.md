@@ -1,3 +1,9 @@
+## 2.2.0 / 2016-08-12
+
+* deps: testem@1.10.3, browserify@13.1.0
+* inline mocha's css & js files to support offline development
+* use standard as a linter
+
 ## 2.1.2 / 2015-11-12
 
 * deps: glob@6.0.1, testem@0.9.11
