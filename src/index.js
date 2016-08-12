@@ -4,6 +4,16 @@ import errorify from 'errorify'
 import Testem from 'testem'
 import concatStream from 'concat-stream'
 import Server from 'testem/lib/server'
+import { readFileSync as readFile } from 'fs'
+import { join } from 'path'
+
+/**
+ * Since 1.x testem does not bundle mocha files, because of this
+ * inline mocha's js/css files to support offline development.
+ */
+
+const mochaCss = readFile(join(__dirname, '../public/mocha234.min.css'), 'utf8')
+const mochaJs = readFile(join(__dirname, '../public/mocha234.min.js'), 'utf8')
 
 /**
  * Run testem server with `opts`.
@@ -57,8 +67,8 @@ export default function ({ files, transform, watch }) {
         <html>
         <head>
           <title>Tests</title>
-          <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.css">
-          <script src="//cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.js"></script>
+          <style>${mochaCss}</style>
+          <script>${mochaJs}</script>
           <script src="/testem.js"></script>
           <script>mocha.setup('bdd')</script>
         </head>
