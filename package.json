@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "test": "npm run prepublish && eslint src/ test/ && mocha",
-    "prepublish": "babel src --out-dir lib --presets es2015 && chmod 755 lib/cli.js"
+    "prepublish": "babel src --out-dir lib --presets es2015"
   },
   "dependencies": {
     "browserify": "^13.1.0",
@@ -42,8 +42,10 @@
     "babelify": "^7.3.0",
     "browserify-handlebars": "^1.0.0",
     "chai": "^3.5.0",
-    "eslint": "^2.13.1",
+    "eslint": "^3.0.0",
     "eslint-config-standard": "^5.3.5",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
     "handlebars": "^4.0.5",
     "mocha": "^3.0.2"
   }

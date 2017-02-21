@@ -42,7 +42,7 @@ browserify-test # run tests for ./test/*.js
 browserify-test --watch # start watch server on localhost:7537
 browserify-test ./path/to/test.js ./path/to/another-test.js # pass test files as arguments
 browserify-test ./lib/**/test.js # use globs
-browserify-test --tranform [ babelify --presets es2015 ] ./path/to/es6-test.js # use transforms
+browserify-test --transform [ babelify --presets es2015 ] ./path/to/es6-test.js # use transforms
 ```
 
 ## Integration with npm
