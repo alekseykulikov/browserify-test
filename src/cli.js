@@ -13,12 +13,15 @@ program
 .usage('[options] [./test/*.js ...]')
 .option('-w, --watch', 'run watch server on http://localhost:7357')
 .option('-t, --transform <t1,t2,..>', 'add browserify transforms')
+.option('-p, --plugins <p1,p2,..>', 'add browserify plugins')
+.option('-b, --browserifyOptions <jsonStringifiedObj>', 'add browserifyOptions', JSON.parse)
+.option('--testem, --testemOptions <jsonStringifiedObj>', 'add testemOptions', JSON.parse)
 .parse(process.argv)
 
 // prepare files
 
 const argv = subarg(process.argv.slice(2), {
-  alias: { t: 'transform', w: 'watch' },
+  alias: { t: 'transform', transforms: 'transform', p: 'plugins', w: 'watch', testem: 'testemOptions' },
   boolean: ['watch']
 })
 const files = []
@@ -41,9 +44,25 @@ if (argv.transform) {
   })
 }
 
+const plugins = []
+if (argv.plugins) {
+  if (!Array.isArray(argv.plugins)) argv.plugins = [argv.plugins]
+  argv.plugins.forEach((tr) => {
+    if (typeof tr === 'string') {
+      plugins.push(tr)
+    } else if (Array.isArray(tr._)) {
+      plugins.push([tr._[0], omit(tr, '_')])
+    } else {
+      throw new Error(`invalid --plugins value: ${JSON.stringify(tr)}`)
+    }
+  })
+}
+
+const browserifyOptions = program.browserifyOptions || {}
+const testemOptions = program.testemOptions || {}
 // run testem
 
 run({
-  transform, files,
+  files, transform, plugins, browserifyOptions, testemOptions,
   watch: program.watch || false
 })

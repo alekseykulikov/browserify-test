@@ -37,6 +37,8 @@ browserify-test --help
     -V, --version               output the version number
     -w, --watch                 run watch server on http://localhost:7357
     -t, --transform <t1,t2,..>  add browserify transforms
+    -p, --plugins <p1,p2,..>    add browserify plugins
+    -b, --browserifyOptions <jsonStringifiedObj> add browserifyOptions
 
 browserify-test # run tests for ./test/*.js
 browserify-test --watch # start watch server on localhost:7537
@@ -87,9 +89,11 @@ run({
 
 Options:
 
+* `files` - Array - a list of files for browserify
 * `watch` - Boolean - enable watch server
 * `transform` - Array - a list of browserify transform modules
-* `files` - Array - a list of files for browserify
+* `plugins` - Array - a list of browserify transform modules
+* `browserifyOptions` - Object - options to pass to `browserify`
 
 ## License
 
