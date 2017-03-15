@@ -1,3 +1,20 @@
+## 3.0.0 / 2017-03-15
+
+Thanks [brettz9](https://github.com/brettz9)!
+
+* enhancement: support plugins array (strings, functions, or arrays) in cli/node
+* enhancement: transforms alias for transform to parallel plugins plural
+* enhancement: add entries alias to parallel browserify
+* enhancement: support custom options to browserify
+* enhancement: return browserify instance to support further pipelining, etc.
+* enhancement: support testem options
+* enhancement: support finalizer function
+* enhancement: support transform functions
+* fix: ensure proper testem method is called on watch updates
+* deps: browserify@14.1.0
+* pass tests on windows
+* separate cli/node tests
+
 ## 2.2.0 / 2016-08-12
 
 * deps: testem@1.10.3, browserify@13.1.0
