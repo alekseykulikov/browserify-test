@@ -1,6 +1,8 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
 import { exec, spawn } from 'child_process'
+import bt from '../'
+import stream from 'stream'
 
 describe('browserify-test', () => {
   // clean child process in the case of error
@@ -51,6 +53,113 @@ describe('browserify-test', () => {
       expect(stdout).contain('1..1')
       expect(stdout).contain('# ok')
       done()
+    })
+  })
+
+  it('supports testemOptions', (done) => {
+    const browser = (/^win/.test(process.platform) ? 'Chrome' : 'Safari')
+    exec('node ./lib/cli.js -t [ babelify --presets es2015 ] --testem \'{"launch_in_ci": ["' +
+      browser +
+      '"]}\' ./test/app/test/*.js',
+      (err, stdout) => {
+        if (err) return done(err)
+        expect(stdout).contain('# ok')
+        expect(stdout).contain(browser)
+        done()
+      })
+  })
+
+  it('should throw an error when the files option is not passed', function () {
+    expect(bt.bind(null, {})).throw(Error)
+  })
+
+  it('should call the callback', function (done) {
+    bt(
+      {
+        watch: false,
+        files: ['./test/app/test/mul.js'],
+        transform: [['babelify', { presets: 'es2015' }]],
+        finalizer: done
+      }
+    )
+  })
+
+  it('should work with entries alias', function (done) {
+    bt(
+      {
+        watch: false,
+        entries: ['./test/app/test/mul.js'],
+        transform: [['babelify', { presets: 'es2015' }]],
+        finalizer: done
+      }
+    )
+  })
+
+  it('should work with transforms alias', function (done) {
+    bt(
+      {
+        watch: false,
+        files: ['./test/app/test/mul.js'],
+        transforms: [['babelify', { presets: 'es2015' }]],
+        finalizer: done
+      }
+    )
+  })
+
+  it('should not throw an error when transform options are not passed', function (done) {
+    expect(bt.bind(null, {
+      files: ['./test/odd-noES6.js'],
+      finalizer: done
+    })).not.throw()
+  })
+
+  it('supports browserifyOptions', (done) => {
+    const b = bt({
+      files: ['./test/app/test/sum.js'],
+      transform: [['babelify', { presets: 'es2015' }]],
+      browserifyOptions: { debug: true },
+      finalizer: function () {
+        let s = ''
+        class CheckStream extends stream.Writable {
+          _write (chunk, enc, next) {
+            s += chunk.toString()
+            next()
+          }
+          end () {
+            expect(s).contain('sourceMappingURL')
+            done()
+          }
+        }
+        b.bundle().pipe(new CheckStream())
+      }
+    })
+  })
+
+  it('returns browserify instance', (done) => {
+    const b = bt({
+      files: ['./test/app/test/sum.js'],
+      transform: [['babelify', { presets: 'es2015' }]],
+      finalizer: done
+    })
+    expect(b).property('bundle').is.a('function')
+  })
+
+  it('supports multiple plugins', (done) => {
+    let ct = 0
+    function checkDone () {
+      ct++
+      if (ct === 2) done()
+    }
+    bt({
+      plugins: [
+        function () {
+          checkDone()
+        },
+        function () {
+          checkDone()
+        }
+      ],
+      files: ['./test/odd-noES6.js']
     })
   })
 

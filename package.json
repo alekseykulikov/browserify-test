@@ -32,7 +32,8 @@
     "lodash.omit": "^4.4.1",
     "subarg": "^1.0.0",
     "testem": "^1.10.3",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "phantomjs-prebuilt": "^2.1.14"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

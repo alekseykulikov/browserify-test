@@ -21,35 +21,46 @@ const mochaJs = readFile(join(__dirname, '../public/mocha234.min.js'), 'utf8')
  * @param {Object} opts
  */
 
-export default function ({ files, transform, watch }) {
+export default function ({ files, entries, transforms, plugins, watch, transform, browserifyOptions, testemOptions, finalizer }) {
+  if (!files && entries) files = entries
   if (!files || !files.length) throw new Error('specify files')
+  if (!transform && transforms) transform = transforms
 
   // setup testem & browserify
 
   const testem = new Testem()
-  const config = {
+  const config = Object.assign({
     framework: 'mocha',
     launch_in_ci: ['phantomjs'],
     launch_in_dev: ['phantomjs']
-  }
+  }, testemOptions)
 
   let b
   if (watch) {
-    testem.startDev(config)
-    b = watchify(browserify(files, watchify.args))
-    b.on('update', () => testem.app.startTests()) // reload
+    testem.startDev(config, finalizer)
+    b = watchify(browserify(files, Object.assign(watchify.args, browserifyOptions)))
+    b.on('update', () => testem.app.runTests()) // reload
   } else {
-    testem.startCI(config)
-    b = browserify(files)
+    testem.startCI(config, finalizer)
+    b = browserify(files, browserifyOptions)
   }
 
   b.plugin(errorify)
   if (transform) {
     transform.forEach((tr) => {
-      if (typeof tr === 'string') {
+      if (typeof tr === 'string' || typeof tr === 'function') {
         b.transform(tr)
       } else {
         b.transform(tr[0], tr[1])
+      }
+    })
+  }
+  if (plugins) {
+    plugins.forEach((pl) => {
+      if (typeof pl === 'string' || typeof pl === 'function') {
+        b.plugin(pl)
+      } else {
+        b.plugin(pl[0], pl[1])
       }
     })
   }
@@ -81,4 +92,6 @@ export default function ({ files, transform, watch }) {
       `)
     }))
   }
+
+  return b
 }
