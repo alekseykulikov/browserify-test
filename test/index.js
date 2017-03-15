@@ -9,41 +9,35 @@ describe('browserify-test/index', () => {
   })
 
   it('should call the callback', function (done) {
-    bt(
-      {
-        watch: false,
-        files: ['./test/app/test/mul.js'],
-        transform: [['babelify', { presets: 'es2015' }]],
-        finalizer: done
-      }
-    )
+    bt({
+      watch: false,
+      files: ['./test/app/test/mul.js'],
+      transform: [['babelify', { presets: 'es2015' }]],
+      finalizer: done
+    })
   })
 
   it('should work with entries alias', function (done) {
-    bt(
-      {
-        watch: false,
-        entries: ['./test/app/test/mul.js'],
-        transform: [['babelify', { presets: 'es2015' }]],
-        finalizer: done
-      }
-    )
+    bt({
+      watch: false,
+      entries: ['./test/app/test/mul.js'],
+      transform: [['babelify', { presets: 'es2015' }]],
+      finalizer: done
+    })
   })
 
   it('should work with transforms alias', function (done) {
-    bt(
-      {
-        watch: false,
-        files: ['./test/app/test/mul.js'],
-        transforms: [['babelify', { presets: 'es2015' }]],
-        finalizer: done
-      }
-    )
+    bt({
+      watch: false,
+      files: ['./test/app/test/mul.js'],
+      transforms: [['babelify', { presets: 'es2015' }]],
+      finalizer: done
+    })
   })
 
   it('should not throw an error when transform options are not passed', function (done) {
     expect(bt.bind(null, {
-      files: ['./test/odd-noES6.js'],
+      files: ['./test/app/odd-noES6.js'],
       finalizer: done
     })).not.throw()
   })
@@ -94,7 +88,7 @@ describe('browserify-test/index', () => {
           checkDone()
         }
       ],
-      files: ['./test/odd-noES6.js']
+      files: ['./test/app/odd-noES6.js']
     })
   })
 })
