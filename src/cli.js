@@ -63,6 +63,5 @@ const testemOptions = program.testemOptions || {}
 // run testem
 
 run({
-  files, transform, plugins, browserifyOptions, testemOptions,
-  watch: program.watch || false
+  files, transform, plugins, browserifyOptions, testemOptions, watch: program.watch || false
 })
