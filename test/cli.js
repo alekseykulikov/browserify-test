@@ -55,16 +55,12 @@ describe('browserify-test/cli', () => {
   })
 
   it('supports testemOptions', (done) => {
-    const browser = (/^win/.test(process.platform) ? 'Chrome' : 'Safari')
-    exec('node ./lib/cli.js -t [ babelify --presets es2015 ] --testem \'{"launch_in_ci": ["' +
-      browser +
-      '"]}\' ./test/app/test/*.js',
-      (err, stdout) => {
-        if (err) return done(err)
-        expect(stdout).contain('# ok')
-        expect(stdout).contain(browser)
-        done()
-      })
+    exec('node ./lib/cli.js -t [ babelify --presets es2015 ] --testem \'{"launch_in_ci": ["phantomjs"]}\' ./test/app/test/*.js', (err, stdout) => {
+      if (err) return done(err)
+      expect(stdout).contain('1..4')
+      expect(stdout).contain('# ok')
+      done()
+    })
   })
 
   it('supports --watch', (done) => {
