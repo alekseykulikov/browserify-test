@@ -74,9 +74,11 @@ export default function ({ files, entries, transform, transforms, plugins, watch
     })
     .pipe(concatStream((buf) => {
       res.status(200).send(`
-        <!doctype html>
+        <!DOCTYPE html>
         <html>
         <head>
+          <meta charset="utf-8" />
+          <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
           <title>Tests</title>
           <style>${mochaCss}</style>
           <script>${mochaJs}</script>
