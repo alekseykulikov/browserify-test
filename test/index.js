@@ -2,6 +2,7 @@
 import { expect } from 'chai'
 import bt from '../'
 import stream from 'stream'
+import SilentReporter from './SilentReporter'
 
 describe('browserify-test/index', () => {
   it('should throw an error when the files option is not passed', function () {
@@ -13,7 +14,10 @@ describe('browserify-test/index', () => {
       watch: false,
       files: ['./test/app/test/mul.js'],
       transform: [['babelify', { presets: 'es2015' }]],
-      finalizer: done
+      finalizer: done,
+      testemOptions: {
+        reporter: new SilentReporter()
+      }
     })
   })
 
@@ -22,7 +26,10 @@ describe('browserify-test/index', () => {
       watch: false,
       entries: ['./test/app/test/mul.js'],
       transform: [['babelify', { presets: 'es2015' }]],
-      finalizer: done
+      finalizer: done,
+      testemOptions: {
+        reporter: new SilentReporter()
+      }
     })
   })
 
@@ -31,14 +38,20 @@ describe('browserify-test/index', () => {
       watch: false,
       files: ['./test/app/test/mul.js'],
       transforms: [['babelify', { presets: 'es2015' }]],
-      finalizer: done
+      finalizer: done,
+      testemOptions: {
+        reporter: new SilentReporter()
+      }
     })
   })
 
   it('should not throw an error when transform options are not passed', function (done) {
     expect(bt.bind(null, {
       files: ['./test/app/odd-noES6.js'],
-      finalizer: done
+      finalizer: done,
+      testemOptions: {
+        reporter: new SilentReporter()
+      }
     })).not.throw()
   })
 
@@ -47,6 +60,9 @@ describe('browserify-test/index', () => {
       files: ['./test/app/test/sum.js'],
       transform: [['babelify', { presets: 'es2015' }]],
       browserifyOptions: { debug: true },
+      testemOptions: {
+        reporter: new SilentReporter()
+      },
       finalizer: function () {
         let s = ''
         class CheckStream extends stream.Writable {
@@ -68,7 +84,10 @@ describe('browserify-test/index', () => {
     const b = bt({
       files: ['./test/app/test/sum.js'],
       transform: [['babelify', { presets: 'es2015' }]],
-      finalizer: done
+      finalizer: done,
+      testemOptions: {
+        reporter: new SilentReporter()
+      }
     })
     expect(b).property('bundle').is.a('function')
   })
@@ -86,7 +105,8 @@ describe('browserify-test/index', () => {
       testemOptions: {
         on_exit: function (conf, data, cb) {
           cb(true)
-        }
+        },
+        reporter: new SilentReporter()
       }
     })
   })
@@ -110,6 +130,9 @@ describe('browserify-test/index', () => {
         expect(pluginACalled).equal(true)
         expect(pluginBCalled).equal(true)
         done()
+      },
+      testemOptions: {
+        reporter: new SilentReporter()
       }
     })
   })
