@@ -20,7 +20,7 @@
     "development"
   ],
   "scripts": {
-    "test": "npm run prepublish && eslint src/ test/ && mocha test/cli.js test/index.js",
+    "test": "npm run prepublish && eslint src/ test/ && mocha test/index.js test/cli.js",
     "prepublish": "babel src --out-dir lib --presets es2015"
   },
   "dependencies": {

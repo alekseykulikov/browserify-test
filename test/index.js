@@ -92,21 +92,25 @@ describe('browserify-test/index', () => {
   })
 
   it('supports multiple plugins', (done) => {
-    let ct = 0
-    function checkDone () {
-      ct++
-      if (ct === 2) done()
-    }
+    let pluginACalled = false
+    let pluginBCalled = false
+
     bt({
+      watch: false,
       plugins: [
         function () {
-          checkDone()
+          pluginACalled = true
         },
         function () {
-          checkDone()
+          pluginBCalled = true
         }
       ],
-      files: ['./test/app/odd-noES6.js']
+      files: ['./test/app/odd-noES6.js'],
+      finalizer: function () {
+        expect(pluginACalled).equal(true)
+        expect(pluginBCalled).equal(true)
+        done()
+      }
     })
   })
 })
