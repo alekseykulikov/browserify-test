@@ -21,7 +21,7 @@ const mochaJs = readFile(join(__dirname, '../public/mocha234.min.js'), 'utf8')
  * @param {Object} opts
  */
 
-export default function ({ files, entries, transforms, plugins, watch, transform, browserifyOptions, testemOptions, finalizer }) {
+export default function ({ files, entries, transform, transforms, plugins, watch, browserifyOptions, testemOptions, finalizer }) {
   if (!files && entries) files = entries
   if (!files || !files.length) throw new Error('specify files')
   if (!transform && transforms) transform = transforms

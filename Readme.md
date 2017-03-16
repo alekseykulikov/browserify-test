@@ -38,7 +38,8 @@ browserify-test --help
     -w, --watch                 run watch server on http://localhost:7357
     -t, --transform <t1,t2,..>  add browserify transforms
     -p, --plugins <p1,p2,..>    add browserify plugins
-    -b, --browserifyOptions <jsonStringifiedObj> add browserifyOptions
+    -b, --browserifyOptions <jsonStringifiedObj>     add browserifyOptions
+    --testem, --testemOptions <jsonStringifiedObj>   add testemOptions
 
 browserify-test # run tests for ./test/*.js
 browserify-test --watch # start watch server on localhost:7537
@@ -87,13 +88,15 @@ run({
 })
 ```
 
-Options:
+### Options
 
-* `files` - Array - a list of files for browserify
+* `files` (or `entries`) - Array - a list of files for browserify
 * `watch` - Boolean - enable watch server
-* `transform` - Array - a list of browserify transform modules
+* `transform` (or `transforms`) - Array - a list of browserify transform modules
 * `plugins` - Array - a list of browserify transform modules
-* `browserifyOptions` - Object - options to pass to `browserify`
+* `browserifyOptions` - Object - options to pass as [`browserify` options](https://github.com/substack/node-browserify#browserifyfiles--opts)
+* `testemOptions` - Object - options to pass as [`testem` options](https://github.com/testem/testem/blob/master/docs/config_file.md#option-reference). Note that besides config-level options, the CLI-level options are also available, as are Testem's [hooks](https://github.com/testem/testem/blob/master/docs/config_file.md#available-hooks) which can be used to report on [testem phases](https://github.com/testem/testem/blob/master/README.md#preprocessors-coffeescript-less-sass-browserify-etc)); these can be expressed as strings (to execute shell commands) or as callbacks. Callbacks will be passed the Testem config object, any data object for the hook (only currently used for the undocumented `on_change` hook, providing a `file` path property), and a callback which should be invoked with a falsy argument (or no arguments) to indicate a passed Testem test or invoked with a truthy argument (such as an error object) to report a failed Testem test.
+* `finalizer` - Function called toward end of tests; as in testem, this finalizer will be passed an exit code (set to 0 if normal and 1 if erring) and any [(Bluebird) error object](http://bluebirdjs.com/docs/api/ascallback.html). If you wish to execute code prior to the end of all tests, see the docs above on hooks in `testemOptions`.
 
 ## License
 

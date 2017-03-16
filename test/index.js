@@ -73,6 +73,24 @@ describe('browserify-test/index', () => {
     expect(b).property('bundle').is.a('function')
   })
 
+  it('should support testemOptions', function (done) {
+    bt({
+      watch: false,
+      files: ['./test/app/test/mul.js'],
+      transform: [['babelify', { presets: 'es2015' }]],
+      finalizer: function (ec, e) {
+        expect(ec).equal(1)
+        expect(e).property('cause').property('message').equal('true') // See http://bluebirdjs.com/docs/api/ascallback.html
+        done()
+      },
+      testemOptions: {
+        on_exit: function (conf, data, cb) {
+          cb(true)
+        }
+      }
+    })
+  })
+
   it('supports multiple plugins', (done) => {
     let ct = 0
     function checkDone () {
