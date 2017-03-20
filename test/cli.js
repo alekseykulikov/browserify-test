@@ -13,7 +13,7 @@ describe('browserify-test/cli', () => {
   })
 
   it('runs one file', (done) => {
-    exec('node ./lib/cli.js -t [ babelify --presets es2015 ] ./test/app/test/sum.js', (err, stdout) => {
+    exec('node ./lib/cli.js -t [ babelify --presets env ] ./test/app/test/sum.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('test-sum calculates the sum')
       expect(stdout).contain('1..1')
@@ -23,7 +23,7 @@ describe('browserify-test/cli', () => {
   })
 
   it('runs multiple files', (done) => {
-    exec('node ./lib/cli.js --transform [ babelify --presets es2015 ] ./test/app/test/sum.js ./test/app/test/odd.js', (err, stdout) => {
+    exec('node ./lib/cli.js --transform [ babelify --presets env ] ./test/app/test/sum.js ./test/app/test/odd.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('1..2')
       expect(stdout).contain('# ok')
@@ -32,7 +32,7 @@ describe('browserify-test/cli', () => {
   })
 
   it('supports globs', (done) => {
-    exec('node ./lib/cli.js -t [ babelify --presets es2015 ] ./test/app/test/*.js', (err, stdout) => {
+    exec('node ./lib/cli.js -t [ babelify --presets env ] ./test/app/test/*.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('test-mul calculates the mul')
       expect(stdout).contain('test-mul supports many arguments')
@@ -45,7 +45,7 @@ describe('browserify-test/cli', () => {
   })
 
   it('supports multiple transforms', (done) => {
-    exec('node ./lib/cli.js -t browserify-handlebars -t [ babelify --presets es2015 ] ./test/app/test2/read-html.js', (err, stdout) => {
+    exec('node ./lib/cli.js -t browserify-handlebars -t [ babelify --presets env ] ./test/app/test2/read-html.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('test-read-file reads index.html')
       expect(stdout).contain('1..1')
@@ -55,7 +55,7 @@ describe('browserify-test/cli', () => {
   })
 
   it('supports testemOptions', (done) => {
-    exec('node ./lib/cli.js -t [ babelify --presets es2015 ] --testem \'{"launch_in_ci": ["phantomjs"]}\' ./test/app/test/*.js', (err, stdout) => {
+    exec('node ./lib/cli.js -t [ babelify --presets env ] --testem \'{"launch_in_ci": ["phantomjs"]}\' ./test/app/test/*.js', (err, stdout) => {
       if (err) return done(err)
       expect(stdout).contain('1..4')
       expect(stdout).contain('# ok')
@@ -64,7 +64,7 @@ describe('browserify-test/cli', () => {
   })
 
   it('supports --watch', (done) => {
-    child = spawn('node', ['./lib/cli.js', '--transform', '[', 'babelify', '--presets', 'es2015', ']', '-w', './test/app/test/mul.js'])
+    child = spawn('node', ['./lib/cli.js', '--transform', '[', 'babelify', '--presets', 'env', ']', '-w', './test/app/test/mul.js'])
     let counter = 0
 
     child.stdout.on('data', (data) => {

@@ -1,3 +1,7 @@
-require('babel-core/register')({
-  presets: ['es2015']
+require('babel-register')({
+  presets: [['env', {
+    targets: {
+      node: 4
+    }
+  }]]
 })

@@ -13,7 +13,7 @@ describe('browserify-test/index', () => {
     bt({
       watch: false,
       files: ['./test/app/test/mul.js'],
-      transform: [['babelify', { presets: 'es2015' }]],
+      transform: [['babelify', { presets: 'env' }]],
       finalizer: done,
       testemOptions: {
         reporter: new SilentReporter()
@@ -25,7 +25,7 @@ describe('browserify-test/index', () => {
     bt({
       watch: false,
       entries: ['./test/app/test/mul.js'],
-      transform: [['babelify', { presets: 'es2015' }]],
+      transform: [['babelify', { presets: 'env' }]],
       finalizer: done,
       testemOptions: {
         reporter: new SilentReporter()
@@ -37,7 +37,7 @@ describe('browserify-test/index', () => {
     bt({
       watch: false,
       files: ['./test/app/test/mul.js'],
-      transforms: [['babelify', { presets: 'es2015' }]],
+      transforms: [['babelify', { presets: 'env' }]],
       finalizer: done,
       testemOptions: {
         reporter: new SilentReporter()
@@ -58,7 +58,7 @@ describe('browserify-test/index', () => {
   it('supports browserifyOptions', (done) => {
     const b = bt({
       files: ['./test/app/test/sum.js'],
-      transform: [['babelify', { presets: 'es2015' }]],
+      transform: [['babelify', { presets: 'env' }]],
       browserifyOptions: { debug: true },
       testemOptions: {
         reporter: new SilentReporter()
@@ -83,7 +83,7 @@ describe('browserify-test/index', () => {
   it('returns browserify instance', (done) => {
     const b = bt({
       files: ['./test/app/test/sum.js'],
-      transform: [['babelify', { presets: 'es2015' }]],
+      transform: [['babelify', { presets: 'env' }]],
       finalizer: done,
       testemOptions: {
         reporter: new SilentReporter()
@@ -96,7 +96,7 @@ describe('browserify-test/index', () => {
     bt({
       watch: false,
       files: ['./test/app/test/mul.js'],
-      transform: [['babelify', { presets: 'es2015' }]],
+      transform: [['babelify', { presets: 'env' }]],
       finalizer: function (ec, e) {
         expect(ec).equal(1)
         expect(e).property('cause').property('message').equal('true') // See http://bluebirdjs.com/docs/api/ascallback.html
