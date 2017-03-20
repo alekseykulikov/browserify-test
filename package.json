@@ -6,6 +6,9 @@
   "repository": "alekseykulikov/browserify-test",
   "main": "lib/index.js",
   "bin": "lib/cli.js",
+  "engines": {
+    "node": ">=4"
+  },
   "files": [
     "lib",
     "public"
