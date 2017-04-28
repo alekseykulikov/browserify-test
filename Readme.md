@@ -85,7 +85,8 @@ run({
   watch: false,
   transform: ['brsf', ['babelify', { presets: 'env' }]],
   files: ['./test/file1.js', './test/file2.js'],
-})
+}) // Returns the underlying `browserify` instance
+
 ```
 
 ### Options
